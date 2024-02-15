@@ -17,14 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/main_nav_menu" />
     <!--    This is a place holder something similar to the original view-->
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/main_bottom_nav"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/img"
-        android:scaleType="fitXY"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">SleepApnea</string>
+    <string name="privacy">By signing in you are agreeing our</string>
+    <string name="login_option">or connect with</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Google_web_client_id">1008068620508-tf5mkflf84l3qpupe1j4gegvplaedj3s.apps.googleusercontent.com</string>
 </resources>
