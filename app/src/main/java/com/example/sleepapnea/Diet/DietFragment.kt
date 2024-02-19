@@ -3,9 +3,27 @@ package com.example.sleepapnea.Diet
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.widget.Button
 import android.view.View
 import android.view.ViewGroup
 import com.example.sleepapnea.R
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:background="@color/white"
+    android:background="@color/Main_theme"
+    android:background="@color/Color_theme">
+</RelativeLayout>
+
+<TextView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Sample Text"
+android:fontFamily="@font"/>
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,8 +52,61 @@ class DietFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_diet, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Find the button in your layout
+        val generateTestButton: Button = view.findViewById(R.id.generateTestButton)
+
+        // Set click listener to the button
+        generateTestButton.setOnClickListener {
+            showQuestionDialog()
+        }
+    }
+
+    private fun showQuestionDialog() {
+        val builder = AlertDialog.Builder(requireContext())
+        val dialogView = layoutInflater.inflate(R.layout.dialog_question, null)
+        val questionTextView = dialogView.findViewById<TextView>(R.id.questionTextView)
+        val answerEditText = dialogView.findViewById<EditText>(R.id.answerEditText)
+
+        // questions
+        val questions = arrayOf(
+            "Do you have hypertension?",
+            "Do you experience daytime sleepiness?"
+        )
+
+        // Initialize current question index
+        var currentQuestionIndex = 0
+
+        // Display the first question
+        questionTextView.text = questions[currentQuestionIndex]
+
+        builder.setView(dialogView)
+            .setPositiveButton("Next") { dialog, _ ->
+                // Move to the next question
+                currentQuestionIndex = (currentQuestionIndex + 1) % questions.size
+                questionTextView.text = questions[currentQuestionIndex]
+            }
+            .setNegativeButton("Previous") { dialog, _ ->
+                // Move to the previous question
+                currentQuestionIndex = (currentQuestionIndex - 1 + questions.size) % questions.size
+                questionTextView.text = questions[currentQuestionIndex]
+            }
+            .create()
+            .show()
+        yesButton.setOnClickListener {
+            // Handle yes answer
+            // You can save the answer or perform any other action here
+        }
+
+        noButton.setOnClickListener {
+            // Handle no answer
+            // You can save the answer or perform any other action here
+        }
     }
 
     companion object {
