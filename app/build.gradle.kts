@@ -38,6 +38,9 @@ android {
         mlModelBinding = true
     }
 }
+tasks.register("prepareKotlinBuildScriptModel"){
+
+}
 
 dependencies {
 

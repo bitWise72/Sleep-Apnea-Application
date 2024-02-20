@@ -9,21 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.sleepapnea.R
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/black"
-    android:background="@color/white"
-    android:background="@color/Main_theme"
-    android:background="@color/Color_theme">
-</RelativeLayout>
-
-<TextView
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="Sample Text"
-android:fontFamily="@font"/>
-
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -52,7 +37,15 @@ class DietFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_diet, container, false)
+        val view = inflater.inflate(R.layout.fragment_diet, container, false)
+
+        // Find the button in your layout
+        val generateTestButton: Button = view.findViewById(R.id.generateTestButton)
+        generateTestButton.setOnClickListener {
+            showQuestionDialog()
+        }
+
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -71,7 +64,8 @@ class DietFragment : Fragment() {
         val builder = AlertDialog.Builder(requireContext())
         val dialogView = layoutInflater.inflate(R.layout.dialog_question, null)
         val questionTextView = dialogView.findViewById<TextView>(R.id.questionTextView)
-        val answerEditText = dialogView.findViewById<EditText>(R.id.answerEditText)
+        val yesButton = dialogView.findViewById<Button>(R.id.yesButton)
+        val noButton = dialogView.findViewById<Button>(R.id.noButton)
 
         // questions
         val questions = arrayOf(
@@ -85,29 +79,29 @@ class DietFragment : Fragment() {
         // Display the first question
         questionTextView.text = questions[currentQuestionIndex]
 
+        yesButton.setOnClickListener {
+            // Handle Yes button click
+            // For simplicity, you can just show a toast or perform any action as needed
+        }
+
+        noButton.setOnClickListener {
+            // Handle No button click
+            // For simplicity, you can just show a toast or perform any action as needed
+        }
+
         builder.setView(dialogView)
             .setPositiveButton("Next") { dialog, _ ->
-                // Move to the next question
                 currentQuestionIndex = (currentQuestionIndex + 1) % questions.size
                 questionTextView.text = questions[currentQuestionIndex]
             }
             .setNegativeButton("Previous") { dialog, _ ->
-                // Move to the previous question
                 currentQuestionIndex = (currentQuestionIndex - 1 + questions.size) % questions.size
                 questionTextView.text = questions[currentQuestionIndex]
             }
             .create()
             .show()
-        yesButton.setOnClickListener {
-            // Handle yes answer
-            // You can save the answer or perform any other action here
-        }
-
-        noButton.setOnClickListener {
-            // Handle no answer
-            // You can save the answer or perform any other action here
-        }
     }
+}
 
     companion object {
         /**
