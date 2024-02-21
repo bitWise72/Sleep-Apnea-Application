@@ -6,11 +6,23 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Button
 import android.view.View
-import android.widget.EditText
-import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
+import android.view.ViewGroup
 import com.example.sleepapnea.R
 
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:background="@color/white"
+    android:background="@color/Main_theme"
+    android:background="@color/Color_theme">
+</RelativeLayout>
+
+<TextView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Sample Text"
+android:fontFamily="@font"/>
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -59,7 +71,7 @@ class DietFragment : Fragment() {
         val builder = AlertDialog.Builder(requireContext())
         val dialogView = layoutInflater.inflate(R.layout.dialog_question, null)
         val questionTextView = dialogView.findViewById<TextView>(R.id.questionTextView)
-
+        val answerEditText = dialogView.findViewById<EditText>(R.id.answerEditText)
 
         // questions
         val questions = arrayOf(
@@ -86,6 +98,15 @@ class DietFragment : Fragment() {
             }
             .create()
             .show()
+        yesButton.setOnClickListener {
+            // Handle yes answer
+            // You can save the answer or perform any other action here
+        }
+
+        noButton.setOnClickListener {
+            // Handle no answer
+            // You can save the answer or perform any other action here
+        }
     }
 
     companion object {
