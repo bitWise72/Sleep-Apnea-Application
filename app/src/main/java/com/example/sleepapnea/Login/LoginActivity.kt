@@ -3,6 +3,7 @@ package com.example.sleepapnea.Login
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.ContactsContract.CommonDataKinds.Identity
+import android.util.Log
 import android.widget.ImageButton
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.IntentSenderRequest
@@ -75,6 +76,7 @@ class LoginActivity : AppCompatActivity() {
         google_sign_in_button.setOnClickListener{
             lifecycleScope.launch {
                 val signInIntentSender= googleSignInClient.signIn()
+                Log.d("TAG_1", "onCreate: clicked")
                 signInLauncher.launch(IntentSenderRequest.Builder(
                     signInIntentSender ?: return@launch
                 ).build())

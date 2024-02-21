@@ -41,6 +41,8 @@ class SleepSessionViewModel (private val healthConnectManager: HealthConnectMana
         }
         return permissionsGranted
     }
+
+    fun getSessionsList(): MutableLiveData<List<SleepSessionRecord>>{ return sessionsList}
     private suspend fun readSleepSessions() {
         val startOfDay = ZonedDateTime.now().truncatedTo(ChronoUnit.DAYS)
         val now = Instant.now()
